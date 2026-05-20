@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  back-end:
+    build: ./back-end
+    container_name: task5-back-end
+    expose:
+      - "5252"
+
+  front-end:
+    build: ./front-end
+    container_name: softy-pinko-front-end-task4
+    expose:
+      - "9000"
+
+  proxy:
+    build: ./proxy
+    container_name: task5-proxy
+    ports:
+      - "80:80"
+    depends_on:
+      - front-end
+      - back-end
